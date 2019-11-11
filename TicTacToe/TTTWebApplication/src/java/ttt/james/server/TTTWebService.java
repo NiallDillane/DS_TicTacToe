@@ -19,7 +19,7 @@ public class TTTWebService {
     private MySQLAccess dao; 
     
     public TTTWebService() {
-        dao = new MySQLAccess("localhost", "root", "", "tttexample");
+        dao = new MySQLAccess("localhost", "root", "root", "tttexample");
     }
 
     /**

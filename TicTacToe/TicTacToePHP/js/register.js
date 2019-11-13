@@ -7,7 +7,7 @@ $(document).ready(function(){
         
         if( username != "" && password != "" ){
             $.ajax({
-                url:'http://localhost:8888/TicTacToePHP/actions/registerAction.php',
+                url:'./actions/registerAction.php',
                 type:'post',
                 data:{username:username, 
                     password:password, 
@@ -16,10 +16,9 @@ $(document).ready(function(){
                 success:function(response){
                     var msg = "";
                     if(response == 1){
-                        console.log("3");
-                        window.location = "http://localhost:8888//TicTacToePHP/user.php";
+                        window.location = "./user.php";
                     }else{
-                        msg = "Invalid username and password!";
+                        msg = response;
                     }
                     $("#message").html(msg);
                 }

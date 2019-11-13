@@ -1,16 +1,29 @@
 <?php
     include "../include/inc.php";
 
-    $username = mysqli_real_escape_string($con,$_POST['username']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
-    $firstname = mysqli_real_escape_string($con,$_POST['firstname']);
-    $surname = mysqli_real_escape_string($con,$_POST['surname']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $firstname = htmlspecialchars($_POST['firstname']);
+    $surname = htmlspecialchars($_POST['surname']);
     
-    $response = $client->register(array(
-        'username' => $username,
-        'password' => $password,
-        'firstname' => $firstname,
-        'surname' => $surname
-    )); 
+    try{
+        $response = $client->register(array(
+            'username' => $username,
+            'password' => $password,
+            'firstname' => $firstname,
+            'surname' => $surname
+        ));
+    
+        if (ctype_digit($response->return)){
+            ECHO 1;
+        }
+        else{
+            ECHO $response->return;
+        }
+    }
+    catch(Exception $e){
+        echo "<h2>Exception Error!</h2>"; 
+        echo $e->getMessage(); 
+    }
 
 ?>

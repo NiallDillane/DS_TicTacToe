@@ -1,0 +1,95 @@
+* {box-sizing: border-box}
+
+.body {
+    margin: auto;
+}
+
+/* CSS based on 
+ * https://www.w3schools.com/howto/howto_css_register_form.asp
+ */
+
+/* Add padding to containers */
+.container {
+  max-width: 50%;
+  margin: auto;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerBtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerBtn:hover {
+  opacity:1;
+}
+
+/* Set a style for the submit/register toggle buttons */
+.toggleContainer {
+    text-align: center;
+}
+.toggleBtn {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 49%;
+  opacity: 0.5;
+}
+
+.toggleBtn:hover {
+  opacity:1;
+}
+
+.toggleBtnSelected {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 49%;
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}

@@ -19,8 +19,6 @@
                 <button class="toggleBtn" id="toggle_login">Login</button>
             </div>
             
-            <div id="message"></div>
-            
             <div id ="div_register">
                 <h2>Register:</h2> 
                 <label for="username" >Username: </label> </br>
@@ -51,6 +49,9 @@
 
                 <input type="submit" name="login" value="Login" class="registerBtn" id="but_login" />
             </div>
+            
+            <div id="message"></div>
+            
         </div>
         <br><br>
         

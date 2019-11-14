@@ -24,6 +24,9 @@ $(document).ready(function(){
                 }
             });
         }
+        else {
+            $("#message").html("Please enter a username and password.")
+        }
     });
     
     $("#but_login").click(function(){

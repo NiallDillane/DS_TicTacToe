@@ -10,12 +10,15 @@
             'password' => $password
         ));
     
-        if (ctype_digit($response->return)){
+        if (($response->return)>0){
             ECHO 1;
             $_SESSION['uid'] = $response->return;
         }
-        else{
-            ECHO $response->return;
+        else if (($response->return) == 0){
+            ECHO "Error - Incorrect details";
+        }
+        else {
+            ECHO "Error";
         }
     }
     catch(Exception $e){

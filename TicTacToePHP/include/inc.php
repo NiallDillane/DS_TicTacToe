@@ -1,8 +1,7 @@
 <?php
     session_start();
     
-    $base_url = "/TicTacToePHP";
-    
+    /* Set up SOAP client */
     $wsdl = "http://localhost:8080/TTTWebApplication/TTTWebService?wsdl";
     ini_set('default_socket_timeout', 600);
     
@@ -11,7 +10,19 @@
             $client = new SoapClient($wsdl, array('trace' => true, 'exceptions' => true));
         }
         catch (Exception $ex) {
-            alert('Web service unavailable :(');
+            ECHO 'Web service unavailable :(';
         }
     } 
+    
+    /* Check if user is logged on; if so they can advance to other pages */
+    $base_url = "/TicTacToePHP/";
+    $url = str_replace($base_url, "", $_SERVER['REQUEST_URI']);
+    if (!isset($_SESSION['uid'])) {
+        $access = array("index.php", "actions/loginAction.php", 
+            "actions/registerAction.php", "actions/logoutAction.php");
+        if(!in_array($url, $access)){
+            header("Location: ".$base_url."index.php");
+            die();
+        }
+    }
 ?>

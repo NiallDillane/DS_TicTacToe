@@ -5,10 +5,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Home</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type ="text/javascript" src="js/register.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <title>Login</title>
+        <?php include "include/imports.php"; ?>
         
     </head>
     <body>
@@ -20,32 +18,25 @@
             </div>
             
             <div id ="div_register">
-                <h2>Register:</h2> 
-                <label for="username" >Username: </label> </br>
-                <input type="text" name="username" id="username" />
+                <br>
+                <input type="text" name="username" id="username" placeholder="Username" />
 
-                <label for="password" >Password: </label> </br>
-                <input type="password" name="password" id="password" />
+                <input type="password" name="password" id="password"  placeholder="Password"/>
 
-                <label for="passwordRe" >Re-enter Password: </label> </br>
-                <input type="password" name="passwordRe" id="passwordRe" />
+                <input type="password" name="passwordRe" id="passwordRe"  placeholder="Re-Enter Password"/>
 
-                <label for="firstname" >First Name: </label> </br>
-                <input type="text" name="firstname" id="firstname" />
+                <input type="text" name="firstname" id="firstname"  placeholder="First Name"/>
 
-                <label for="surname" >Surname: </label> </br>
-                <input type="text" name="surname" id="surname" />
+                <input type="text" name="surname" id="surname"  placeholder="Surname"/>
 
                 <input type="submit" name="register" value="Register" class="registerBtn" id="but_register" />
             </div>
             
             <div id ="div_login" style="display:none">
-                <h2>Login:</h2> 
-                <label for="username" >Username: </label> </br>
-                <input type="text" name="username" id="username_login" />
+                <br>
+                <input type="text" name="username" id="username_login" placeholder="Username" />
 
-                <label for="password" >Password: </label> </br>
-                <input type="password" name="password" id="password_login" />
+                <input type="password" name="password" id="password_login" placeholder="Password" />
 
                 <input type="submit" name="login" value="Login" class="registerBtn" id="but_login" />
             </div>

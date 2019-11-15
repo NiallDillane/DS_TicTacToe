@@ -1,16 +1,24 @@
 $(document).ready(function(){
-    var interval = 1000;  // 1000 = 1 second, 3000 = 3 seconds
+    var interval = 1000;  // Refresh every 3 seconds
     function getGames() {
     $.ajax({
-            type: 'POST',
+            type: 'post',
             url: 'actions/getGames.php',
             data: {},
+            dataType: 'json',
             success: function (response) {
-                    $('#openGames').html(response);// first set the value     
+                var output;
+                output += '<tr><th>Game ID</td><th>User</td><th>Created</td><th>Join</td></tr>' 
+                for (var x in response) {
+                    var line = response[x].split(",");
+                    output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ line[2] + '</td><td>' 
+                            + '<button type="button" id="but_joinGame">Join</button></td></tr>';
+                }
+                $("#gamesTable").html(output);
             },
             complete: function (response) {
-                    // Schedule the next
-                    setTimeout(getGames, interval);
+                // Schedule the next
+                setTimeout(getGames, interval);
             }
         });
     }
@@ -18,38 +26,47 @@ $(document).ready(function(){
     
     
     $("#but_newGame").click(function(){
-        var username = $("#username").val().trim();
-        var password = $("#password").val().trim();
-        var firstname = $("#firstname").val().trim();
-        var surname = $("#surname").val().trim();
-        
-        if( username != "" && password != "" ){
-            $.ajax({
-                url:'./actions/registerAction.php',
-                type:'post',
-                data:{username:username, 
-                    password:password, 
-                    firstname:firstname, 
-                    surname:surname },
-                success:function(response){
-                    var msg = "";
-                    if(response == 1){
-                        window.location = "./home.php";
-                    }else{
-                        msg = response;
-                    }
-                    $("#message").html(msg);
+        $.ajax({
+            url:'./actions/newGame.php',
+            type:'post',
+            data:{},
+            success:function(response){
+                var msg = "";
+                if(response == 1) {
+                } 
+                else{
+                    msg = response;
                 }
-            });
-        }
-        else {
-            $("#message").html("Please enter a username and password.")
-        }
+                $("#message").html(msg);
+            }
+        });
     });
     
+    
+    $(document).on("click", '#but_joinGame', (function(event){
+        event.preventDefault();
+        
+        var gid = $(this).closest('tr').find('td:first').text();
+        
+        $.ajax({
+            url:'./actions/joinGame.php',
+            type:'post',
+            data:{gid:gid},
+            success:function(response){
+                var msg = "";
+                if(response == 1) {
+                    window.location = "./game.php";
+                } 
+                else{
+                    msg = response;
+                }
+                $("#message").html(msg);
+            }
+        });
+    }));
+    
+    
     $("#but_refresh").click(function(){
-        var username = $("#username_login").val().trim();
-        var password = $("#password_login").val().trim(); 
         
         if( username != "" && password != "" ){
             $.ajax({

@@ -20,17 +20,12 @@
             </div>
             
             <div id ="div_games">
-                <div id ="openGames"></div>
-
+                <table id="gamesTable"></table>
+                
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
             </div>
             
             <div id ="div_leaderboards" style="display:none">
-                <label for="username" >Username: </label> </br>
-                <input type="text" name="username" id="username_login" />
-
-                <label for="password" >Password: </label> </br>
-                <input type="password" name="password" id="password_login" />
 
                 <input type="submit" name="refresh" value="Refresh" class="registerBtn" id="but_refresh" />
             </div>

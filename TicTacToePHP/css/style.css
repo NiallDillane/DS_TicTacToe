@@ -2,6 +2,7 @@
 
 .body {
     margin: auto;
+    font-family: sans-serif;
 }
 
 /* CSS based on 
@@ -112,4 +113,25 @@ a {
 .signin {
   background-color: #f1f1f1;
   text-align: center;
+}
+
+
+/* Table styling based on:
+ * https://www.w3schools.com/css/css_table.asp
+ */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
 }

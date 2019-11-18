@@ -2,23 +2,11 @@
     include "../include/inc.php";
     
     $gid = $_SESSION['gid'];
-    $x = htmlspecialchars($_POST['x']);
-    $y = htmlspecialchars($_POST['y']);
     
     try{
-        $response = $client->checkSquare(array('x' => $x,
-                                            'y' => $y, 
-                                            'gid' => $gid));
+        $response = $client->checkWin(array('gid' => $gid));
         
-        if (($response->return)>0){
-            ECHO "Square is taken, please try another";
-        }
-        else if (($response->return) == 0){
-            ECHO 0;
-        }
-        else {
-            ECHO "Databse Error!";
-        }
+        ECHO $response->return;
     }
     catch(Exception $e){
         echo "<h2>Exception Error!</h2>"; 

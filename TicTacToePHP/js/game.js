@@ -44,13 +44,15 @@ $(document).ready(function(){
                 var msg = "";
                 if(response == 0){
                     takeSquare(x, y);
-                }else{
+                }
+                else{
                     msg = response;
                 }
                 $("#message").html(msg);
             }
         });
     });
+    
     
     function takeSquare(x, y) {
         $.ajax({
@@ -60,8 +62,10 @@ $(document).ready(function(){
             success: function (response) {
                 var msg = "";
                 if(response == 1){
-                    msg = "Move made";
-                }else{
+                    getBoard();
+                    checkWin();
+                }
+                else{
                     msg = response;
                 }
                 $("#message").html(msg);
@@ -69,54 +73,69 @@ $(document).ready(function(){
         });
     }
     
+    
     function checkWin() {
         $.ajax({
             type: 'post',
             url: 'actions/checkWin.php',
             data: {},
-            dataType: 'json',
             success: function (response) {
                 if(response == 0){
-                    // continue playing
+                    setGameState(0);
                 }
                 else if(response == 1){
-                    // player 1 wins, end game
+                    setGameState(1);
                 }
                 else if(response == 2){
-                    // player 2 wins, end game
+                    setGameState(2);
                 }
                 else if(response == 3){
-                    // draw, end game
+                    setGameState(3);
                 }
                 else {
                     // ERROR
                 }
-            },
-            complete: function (response) {
-                // Schedule the next
-                setTimeout(getBoard, interval);
             }
         });
     }
-    setTimeout(getBoard, interval);
-    
-    
+
+
 //    function getGameState() {
 //        $.ajax({
 //            type: 'post',
 //            url: 'actions/getGameState.php',
 //            data: {},
 //            success: function (response) {
-//                
-//            },
-//            complete: function (response) {
-//                // Schedule the next
-//                setTimeout(getGames, interval);
+//                if(response == 0){
+//                    // setGameState(0);
+//                }
+//                else {
+//                    msg = response;
+//                }
+//                $("#message").html(msg);
 //            }
 //        });
-//        
 //    }
-//    setTimeout(getGameState, interval);
+    
+    
+    function setGameState(gs) {
+        $.ajax({
+            type: 'post',
+            url: 'actions/setGameState.php',
+            data: {gs: gs},
+            success: function (response) {
+                var msg = "";
+                if(response == 1){
+                    // Gamestate set
+                }
+                else{
+                    msg = response;
+                }
+                $("#message").html(msg);
+            }
+        });
+    }
+    
 
     $("#but_quit").click(function deleteGame() {
         $.ajax({
@@ -124,14 +143,14 @@ $(document).ready(function(){
             url: 'actions/deleteGame.php',
             data: {},
             success: function (response) {
-                    var msg = "";
-                    if(response == 1){
-                        
-                    }
-                    else{
-                        msg = response;
-                    }
-                    $("#message").html(msg);
+                var msg = "";
+                if(response == 1){
+                    window.location = "./home.php"
+                }
+                else{
+                    msg = response;
+                }
+                $("#message").html(msg);
             }
         });
         

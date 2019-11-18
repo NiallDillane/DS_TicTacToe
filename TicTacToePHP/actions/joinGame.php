@@ -10,6 +10,7 @@
         
         if (is_numeric($response->return)) {
             $_SESSION['gid'] = $gid;
+            $_SESSION['xo'] = 'o';
             echo 1;
         }
         else {

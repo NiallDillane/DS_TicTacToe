@@ -8,6 +8,7 @@
         if (is_numeric($response->return)) {
             echo 1;
             $_SESSION['gid'] = $response->return;
+            $_SESSION['xo'] = 'x';
         }
         else {
             echo $response->return;

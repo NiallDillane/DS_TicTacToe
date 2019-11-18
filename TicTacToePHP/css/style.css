@@ -5,7 +5,8 @@
     font-family: sans-serif;
 }
 
-/* CSS based on 
+/** 
+ * CSS based on 
  * https://www.w3schools.com/howto/howto_css_register_form.asp
  */
 
@@ -116,7 +117,8 @@ a {
 }
 
 
-/* Table styling based on:
+/** 
+ * Table styling based on:
  * https://www.w3schools.com/css/css_table.asp
  */
 table {
@@ -134,4 +136,21 @@ tr:nth-child(even){background-color: #f2f2f2}
 th {
   background-color: #4CAF50;
   color: white;
+}
+
+
+/**
+ * Game Board
+ */
+
+.board {
+  max-width: 50%;
+  margin: auto;
+}
+
+.square {
+    line-height:50px;
+    font-size:32px;
+    width:30%;
+    height:8%;
 }

@@ -23,45 +23,6 @@ public class TTTWebService {
     }
 
     /**
-     * Web service operation
-    */
-    /*@WebMethod(operationName = "insert")
-    public String insert(@WebParam(name = "sql") String sql) {
-        try {
-            String whatup = dao.insert(sql);
-            return whatup;
-        } catch(Exception e) {
-            return "Unable to enter data";
-        }
-    }*/
-
-    /**
-     * Web service operation
-    */
-    /*@WebMethod(operationName = "retrieve")
-    public String retrieve(@WebParam(name = "sql") String sql) {
-        try {
-            String whatup = dao.retrieve(sql);
-            return whatup;
-        } catch(Exception e) {
-            return "Unable to enter data";
-        }
-    }*/
-
-    /**
-     * Web service operation
-    */
-    /*@WebMethod(operationName = "remove")
-    public String remove(@WebParam(name = "sql") String sql) {
-        try {
-            String whatup = dao.remove(sql);
-            return whatup;
-        } catch(Exception e) {
-            return "Unable to enter data";
-        }
-    }   */
-
-    /**
      * Used to login to the system
      * @param username the username of the user logging in.
      * @param password the password of the user logging in.

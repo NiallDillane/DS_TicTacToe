@@ -1,7 +1,8 @@
 $(document).ready(function(){
-    var interval = 1000;  // Refresh every 3 seconds
+    
+    var interval = 1000;  // Refresh every 1 second
     function getGames() {
-    $.ajax({
+        $.ajax({
             type: 'post',
             url: 'actions/getGames.php',
             data: {},
@@ -33,6 +34,7 @@ $(document).ready(function(){
             success:function(response){
                 var msg = "";
                 if(response == 1) {
+                    window.location = "./game.php"
                 } 
                 else{
                     msg = response;
@@ -47,7 +49,6 @@ $(document).ready(function(){
         event.preventDefault();
         
         var gid = $(this).closest('tr').find('td:first').text();
-        
         $.ajax({
             url:'./actions/joinGame.php',
             type:'post',

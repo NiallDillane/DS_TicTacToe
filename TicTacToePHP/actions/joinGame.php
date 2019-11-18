@@ -5,10 +5,11 @@
         $uid = $_SESSION['uid'];
         $gid = htmlspecialchars($_POST['gid']);
         
-        $response = $client->newGame(array('uid' => $uid,
+        $response = $client->joinGame(array('uid' => $uid,
                                             'gid' => $gid));
         
         if (is_numeric($response->return)) {
+            $_SESSION['gid'] = $gid;
             echo 1;
         }
         else {

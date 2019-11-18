@@ -118,22 +118,23 @@ $(document).ready(function(){
 //    }
 //    setTimeout(getGameState, interval);
 
-//    function deleteGame() {
-//        $.ajax({
-//            type: 'post',
-//            url: 'actions/getGameState.php',
-//            data: {},
-//            success: function (response) {
-//                    var msg = "";
-//                    if(response == 1){
-//                        window.location = "./home.php";
-//                    }else{
-//                        msg = response;
-//                    }
-//                    $("#message").html(msg);
-//            }
-//        });
+    $("#but_quit").click(function deleteGame() {
+        $.ajax({
+            type: 'post',
+            url: 'actions/deleteGame.php',
+            data: {},
+            success: function (response) {
+                    var msg = "";
+                    if(response == 1){
+                        
+                    }
+                    else{
+                        msg = response;
+                    }
+                    $("#message").html(msg);
+            }
+        });
         
-//    }
+    });
     
 });

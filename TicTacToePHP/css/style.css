@@ -127,9 +127,11 @@ a {
  * Table styling based on:
  * https://www.w3schools.com/css/css_table.asp
  */
-table {
+.fixedHead {
     border-collapse: collapse;
     width: 100%;
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 th, td {
@@ -139,7 +141,9 @@ th, td {
 
 tr:nth-child(even){background-color: #f2f2f2}
 
-th {
+.fixedHead th {
+    position: sticky;
+    top: 0;
     background-color: #4CAF50;
     color: white;
 }
@@ -155,13 +159,14 @@ th {
 }
 
 .square {
-    line-height:50px;
-    font-size:32px;
+    vertical-align: top;
+    font-size:24px;
     width:30%;
     height:8%;
 }
 
 .disabledSquare {
-    pointer-events: none;
+    pointer-events: none !important;
     opacity: 0.4;
+    user-select: none;
 }

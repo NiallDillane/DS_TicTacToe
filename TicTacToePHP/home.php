@@ -20,19 +20,17 @@
             </div>
             
             <div id ="div_games">
-                <div class="scrollDiv">
-                    <table id="gamesTable">
-                        <tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>
-                    </table>
-                </div>
+                <table class="fixedHead" id="gamesTable">
+                    <tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>
+                </table>
                 
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
             </div>
             
-            <div id ="div_leaderboards" class="scrollDiv" style="display:none">
-                <table id="leaderboard"></table>
+            <div id ="div_leaderboards" style="display:none">
+                <table class="fixedHead" id="leaderboard"></table>
 
-                <input type="submit" name="refresh" value="Refresh" class="registerBtn" id="but_refresh" />
+                <!--<input type="submit" name="refresh" value="Refresh" class="registerBtn" id="but_refresh" />-->
             </div>
             
             <div id="message"></div>

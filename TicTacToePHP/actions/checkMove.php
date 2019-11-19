@@ -1,6 +1,7 @@
 <?php
     include "../include/inc.php";
     $gid = $_SESSION['gid'];
+    $xo = $_SESSION['xo'];
     
     try{
         $response = $client->getBoard(array('gid' => $gid));
@@ -10,15 +11,23 @@
         $lastmove = explode(",", $moves[sizeof($moves) - 1]);
         $lastPlayer = $lastmove[0];
         
-        if (($lastPlayer == "ERROR") && ($_SESSION['xo'] == 'x')) {
-            ECHO 1;
-        }
-        else if($lastPlayer != $_SESSION['uid']){
-            ECHO 1; // Go
+        if (is_numeric($lastPlayer)){
+            if ($lastPlayer == $_SESSION['uid']) {
+                ECHO 0; // Wait
+            }
+            else {
+                ECHO 1; // Go
+            }
         }
         else {
-            ECHO 0; // Wait
+            if ($xo == 'o') {
+                ECHO 0; // Wait
+            }
+            else {
+                ECHO 1; // Go
+            }
         }
+        
     }
     catch(Exception $e){
         echo "<h2>Exception Error!</h2>"; 

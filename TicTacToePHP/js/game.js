@@ -24,7 +24,6 @@ $(document).ready(function(){
                 }
             },
             complete: function (response) {
-                checkMove();
                 if(i > 2) {
                     checkWin();
                 }
@@ -35,30 +34,29 @@ $(document).ready(function(){
     setTimeout(getBoard, interval);
     
     
-    function checkMove() {
+    $(".square").click(function checkMove() {
+        var loc = this.id;
         $.ajax({
             type: 'post',
             url: 'actions/checkMove.php',
             data: {},
             success: function (response) {
                 if (response == 1){
-                    $("#board :button").attr('disabled', false);
-                    console.log("board enabled");
+                    checkSquare(loc);
                 }
                 else if (response == 0) {
-                    $("#board :button").attr('disabled', true);
-                    console.log("board disabled");
+                    $("#message").html("Wait your turn");
                 }
                 else {
-                    $("#message").html("ERROR");
+                    $("#message").html(response);
                 }
             }
         });
-    }
+    });
     
     
-    $(".square").click(function checkSquare() {
-        var loc = this.id;
+    function checkSquare(loc) {
+        console.log(loc);
         var x = loc.charAt(0);
         var y = loc.charAt(1);
         
@@ -78,7 +76,7 @@ $(document).ready(function(){
                 $("#message").html(msg);
             }
         });
-    });
+    }
     
     
     function takeSquare(x, y) {

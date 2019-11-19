@@ -8,26 +8,13 @@
         $response = $client->setGameState(array('gid' => $gid,
                                                 'gstate' => $gs));
         
-        if($gs == 0){
-            ECHO 0;
-        }
-        else if($gs == -1){
-            ECHO -1;
-        }
-        else if($gs == 1 || $gs == 2 || $gs == 3){
+        if($gs == 1 || $gs == 2 || $gs == 3){
             unset($_SESSION['gid']);
-            header("Location: ".$base_url."home.php");
-        }
-        else {
-            ECHO $gs;
-        }
-        
-        
-        if (($response->return) == 1){
+            unset($_SESSION['xo']);
             ECHO 1;
         }
         else {
-            ECHO $response->return;
+            ECHO $gs;
         }
     }
     catch(Exception $e){

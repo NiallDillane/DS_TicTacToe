@@ -1,9 +1,8 @@
 <?php
     include "../include/inc.php";
-//    unset($_SESSION['gid']);
     
     try{
-        $response = $client->showOpenGames();
+        $response = $client->leagueTable();
         
         $games = explode("\n", $response->return);
         echo json_encode($games);

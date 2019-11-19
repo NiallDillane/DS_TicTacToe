@@ -6,6 +6,7 @@
         $response = $client->getBoard(array('gid' => $gid));
         
         $moves = explode("\n", $response->return);
+        
         echo json_encode($moves);
     }
     catch(Exception $e){

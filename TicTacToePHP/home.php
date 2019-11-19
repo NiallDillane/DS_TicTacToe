@@ -26,6 +26,7 @@
             </div>
             
             <div id ="div_leaderboards" style="display:none">
+                <table id="leaderboard"></table>
 
                 <input type="submit" name="refresh" value="Refresh" class="registerBtn" id="but_refresh" />
             </div>

@@ -9,11 +9,17 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 var output;
-                output += '<tr><th>Game ID</td><th>User</td><th>Created</td><th>Join</td></tr>' 
-                for (var x in response) {
-                    var line = response[x].split(",");
-                    output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ line[2] + '</td><td>' 
-                            + '<button type="button" id="but_joinGame">Join</button></td></tr>';
+                output += '<tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>'
+                
+                if (response[0] === "ERROR-NOGAMES") {
+                    output += '<tr><td>No Games Found :( </td><td></td><td></td><td></td></tr>';
+                }
+                else{
+                    for (var x in response) {
+                        var line = response[x].split(",");
+                        output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ line[2] + '</td><td>' 
+                                + '<button type="button" id="but_joinGame">Join</button></td></tr>';
+                    }
                 }
                 $("#gamesTable").html(output);
             },
@@ -65,6 +71,41 @@ $(document).ready(function(){
             }
         });
     }));
+    
+    
+    function getLeaderboard() {
+        $.ajax({
+            type: 'post',
+            url: 'actions/getLeagueTable.php',
+            data: {},
+            dataType: 'json',
+            success: function (response) {
+                var output;
+                output += '<tr><th>Game</td><th>Player 1</th><th>Player 2</th><th>Winner</th><th>Created</th></tr>'
+                
+                if (response[0] === "ERROR-NOGAMES") {
+                    output += '<tr><td>No Games Found :( </td><td></td><td></td><td></td><td></td></tr>';
+                }
+                else{
+                    for (var x in response) {
+                        var line = response[x].split(",");
+                        var winner = line[2];
+                        if(line[3] == 1)
+                            winner = line[1];
+                        
+                        output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ line[2] + '</td>' 
+                                + '<td>' + winner + '</td><td>' + line[4] + '</td></tr>';
+                    }
+                }
+                $("#leaderboard").html(output);
+            },
+            complete: function (response) {
+                // Schedule the next
+                setTimeout(getLeaderboard, interval);
+            }
+        });
+    }
+    setTimeout(getLeaderboard, interval);
     
     
     $("#but_refresh").click(function(){

@@ -2,6 +2,8 @@ $(document).ready(function(){
     
     var interval = 1000;  // Refresh every 1 second
     function getBoard() {
+        var i = 0;
+        console.log("Getting board");
         $.ajax({
             type: 'post',
             url: 'actions/getBoard.php',
@@ -9,7 +11,6 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 var xo;
-                var i = 0;
                 for (var x in response) {
                     var move = response[x].split(",");
                     var loc = move[1] + "" + move[2];
@@ -23,7 +24,9 @@ $(document).ready(function(){
                 }
             },
             complete: function (response) {
-                // Schedule the next
+                if(i > 2) {
+                    checkWin();
+                }
                 setTimeout(getBoard, interval);
             }
         });
@@ -44,6 +47,7 @@ $(document).ready(function(){
                 var msg = "";
                 if(response == 0){
                     takeSquare(x, y);
+                    console.log("Square ok");
                 }
                 else{
                     msg = response;
@@ -62,8 +66,7 @@ $(document).ready(function(){
             success: function (response) {
                 var msg = "";
                 if(response == 1){
-                    getBoard();
-                    checkWin();
+                    console.log("Square taken");
                 }
                 else{
                     msg = response;
@@ -80,20 +83,13 @@ $(document).ready(function(){
             url: 'actions/checkWin.php',
             data: {},
             success: function (response) {
-                if(response == 0){
-                    setGameState(0);
-                }
-                else if(response == 1){
-                    setGameState(1);
-                }
-                else if(response == 2){
-                    setGameState(2);
-                }
-                else if(response == 3){
-                    setGameState(3);
+                console.log("Setting gamestate to " + response);
+                
+                if(!isNaN(response)) {
+                    setGameState(response);
                 }
                 else {
-                    // ERROR
+                    $("#message").html(response);
                 }
             }
         });
@@ -126,7 +122,7 @@ $(document).ready(function(){
             success: function (response) {
                 var msg = "";
                 if(response == 1){
-                    // Gamestate set
+                    window.location = "./home.php"
                 }
                 else{
                     msg = response;

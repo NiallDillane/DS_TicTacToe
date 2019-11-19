@@ -24,6 +24,7 @@ $(document).ready(function(){
                 }
             },
             complete: function (response) {
+                checkMove();
                 if(i > 2) {
                     checkWin();
                 }
@@ -32,6 +33,28 @@ $(document).ready(function(){
         });
     }
     setTimeout(getBoard, interval);
+    
+    
+    function checkMove() {
+        $.ajax({
+            type: 'post',
+            url: 'actions/checkMove.php',
+            data: {},
+            success: function (response) {
+                if (response == 1){
+                    $("#board :button").attr('disabled', false);
+                    console.log("board enabled");
+                }
+                else if (response == 0) {
+                    $("#board :button").attr('disabled', true);
+                    console.log("board disabled");
+                }
+                else {
+                    $("#message").html("ERROR");
+                }
+            }
+        });
+    }
     
     
     $(".square").click(function checkSquare() {

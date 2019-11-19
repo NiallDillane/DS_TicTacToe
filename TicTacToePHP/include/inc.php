@@ -17,11 +17,20 @@
     /* Check if user is logged on; if so they can advance to other pages */
     $base_url = "/TicTacToePHP/";
     $url = str_replace($base_url, "", $_SERVER['REQUEST_URI']);
+    
+    $newAccess = array("index.php", 
+        "actions/loginAction.php", 
+        "actions/registerAction.php");
+    
     if (!isset($_SESSION['uid'])) {
-        $access = array("index.php", "actions/loginAction.php", 
-            "actions/registerAction.php", "actions/logoutAction.php");
-        if(!in_array($url, $access)){
+        if(!in_array($url, $newAccess)){
             header("Location: ".$base_url."index.php");
+            die();
+        }
+    }
+    else {
+        if(in_array($url, $newAccess)){
+            header("Location: ".$base_url."home.php");
             die();
         }
     }

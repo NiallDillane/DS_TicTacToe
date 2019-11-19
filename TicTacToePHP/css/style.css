@@ -12,45 +12,51 @@
 
 /* Add padding to containers */
 .container {
-  max-width: 50%;
-  margin: auto;
+    max-width: 50%;
+    margin: auto;
+}
+
+/* Make games and leaderboard scrollable on overflow */
+.scrollDiv {
+    max-height: 800px;
+    overflow-y: scroll;
 }
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
 }
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+    background-color: #ddd;
+    outline: none;
 }
 
 /* Overwrite default styles of hr */
 hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
 }
 
 /* Set a style for the submit/register button */
 .registerBtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
 }
 
 .registerBtn:hover {
-  opacity:1;
+    opacity:1;
 }
 
 /* Set a style for the submit/register toggle buttons */
@@ -58,47 +64,47 @@ hr {
     text-align: center;
 }
 .toggleBtn {
-  display: inline-block;
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 49%;
-  opacity: 0.5;
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 49%;
+    opacity: 0.5;
 }
 
 .toggleBtn:hover {
-  opacity:1;
+    opacity:1;
 }
 
 .toggleBtnSelected {
-  display: inline-block;
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 49%;
-  opacity: 1;
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 49%;
+    opacity: 1;
 }
 
 /* Logout button */
 .logoutBtn {
-  position: absolute;
-  right: 10px;
-  top: 5px;
-  display: inline-block;
-  background-color: #e57373;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 20%;
-  opacity: 0.9;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    display: inline-block;
+    background-color: #e57373;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    opacity: 0.9;
 }
 
 .logoutBtn:hover {
@@ -107,13 +113,13 @@ hr {
 
 /* Add a blue text color to links */
 a {
-  color: dodgerblue;
+    color: dodgerblue;
 }
 
 /* Set a grey background color and center the text of the "sign in" section */
 .signin {
-  background-color: #f1f1f1;
-  text-align: center;
+    background-color: #f1f1f1;
+    text-align: center;
 }
 
 
@@ -122,20 +128,20 @@ a {
  * https://www.w3schools.com/css/css_table.asp
  */
 table {
-  border-collapse: collapse;
-  width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 th, td {
-  text-align: left;
-  padding: 8px;
+    text-align: left;
+    padding: 8px;
 }
 
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-  background-color: #4CAF50;
-  color: white;
+    background-color: #4CAF50;
+    color: white;
 }
 
 
@@ -144,8 +150,8 @@ th {
  */
 
 .board {
-  max-width: 50%;
-  margin: auto;
+    max-width: 50%;
+    margin: auto;
 }
 
 .square {
@@ -153,4 +159,9 @@ th {
     font-size:32px;
     width:30%;
     height:8%;
+}
+
+.disabledSquare {
+    pointer-events: none;
+    opacity: 0.4;
 }

@@ -9,7 +9,6 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 var output;
-                output += '<tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>'
                 
                 if (response[0] === "ERROR-NOGAMES") {
                     output += '<tr><td>No Games Found :( </td><td></td><td></td><td></td></tr>';

@@ -1,5 +1,8 @@
 $(document).ready(function(){
     
+    
+    $(".dropdown-toggle").dropdown();
+    
     var interval = 1000;  // Refresh every 1 second
     function getGames() {
         $.ajax({
@@ -133,15 +136,15 @@ $(document).ready(function(){
     });
     
     $("#toggle_games").click(function(){
-        $("#toggle_games").removeClass().addClass("toggleBtnSelected");
-        $("#toggle_leaderboards").removeClass().addClass("toggleBtn");
+//        $("#toggle_games").removeClass().addClass("toggleBtnSelected");
+//        $("#toggle_leaderboards").removeClass().addClass("toggleBtn");
         $("#div_games").show(); 
         $("#div_leaderboards").hide();
     });
     
     $("#toggle_leaderboards").click(function(){
-        $("#toggle_leaderboards").removeClass().addClass("toggleBtnSelected");
-        $("#toggle_games").removeClass().addClass("toggleBtn");
+//        $("#toggle_leaderboards").removeClass().addClass("toggleBtnSelected");
+//        $("#toggle_games").removeClass().addClass("toggleBtn");
         $("#div_leaderboards").show(); 
         $("#div_games").hide();
     });

@@ -117,22 +117,22 @@ $(document).ready(function(){
     }
 
 
-//    function getGameState() {
-//        $.ajax({
-//            type: 'post',
-//            url: 'actions/getGameState.php',
-//            data: {},
-//            success: function (response) {
-//                if(response == 0){
-//                    // setGameState(0);
-//                }
-//                else {
-//                    msg = response;
-//                }
-//                $("#message").html(msg);
-//            }
-//        });
-//    }
+    setTimeout(function getGameState() {
+        $.ajax({
+            type: 'post',
+            url: 'actions/getGameState.php',
+            data: {},
+            success: function (response) {
+                if(response == -1){
+                    window.location = "./home.php";
+                }
+                else {
+                    msg = response;
+                }
+                $("#message").html(msg);
+            }
+        });
+    }, 10000);
     
     
     function setGameState(gs) {
@@ -143,6 +143,7 @@ $(document).ready(function(){
             success: function (response) {
                 var msg = "";
                 if(response == 1){
+                    // delete game
                     window.location = "./home.php"
                 }
                 else{
@@ -162,7 +163,7 @@ $(document).ready(function(){
             success: function (response) {
                 var msg = "";
                 if(response == 1){
-                    window.location = "./home.php"
+                    window.location = "./home.php";
                 }
                 else{
                     msg = response;

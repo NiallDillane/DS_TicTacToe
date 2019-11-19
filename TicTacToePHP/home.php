@@ -14,11 +14,36 @@
         
         <div class="container">
             
-            <div class="toggleContainer">
-                <button class="toggleBtnSelected" id="toggle_games">Games</button>
-                <button class="toggleBtn" id="toggle_leaderboards">Leaderboards</button>
+            <div class="row">
+                <div class="col-md">
+                    <div class="dropdown">
+                        <button class="btn btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Games
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <button class="dropdown-item" id="toggle_games">Open Games</button>
+                            <button class="dropdown-item" id="myOpenGames">My Open Games</a>
+                            <button class="dropdown-item" id="myOpenGames">My Running/Finished Games</a>
+                        </div>
+                    </div> 
+                </div>
+                <div class="col-md">
+                    <div class="dropdown">
+                        <button class="btn btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Leaderboards
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <button class="dropdown-item" id="toggle_leaderboards">Full History</button>
+                            <button class="dropdown-item" id="showMyHistory">My History</a>
+                            <button class="dropdown-item" id="showLeaderboard">Leaderboards</a>
+                        </div>
+                    </div> 
+                </div>
+<!--                <button class="toggleBtnSelected" id="toggle_games">Games</button>-->
+                <!--<button class="toggleBtn" id="toggle_leaderboards">Leaderboards</button>-->
             </div>
-            
+            <br>
+         
             <div id ="div_games">
                 <table class="fixedHead" id="gamesTable">
                     <tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>
@@ -35,6 +60,7 @@
             
             <div id="message"></div>
             
+           
         </div>
         <br><br>
         

@@ -124,30 +124,16 @@ a {
 
 
 /** 
- * Table styling based on:
+ * Sticky table header based on:
  * https://www.w3schools.com/css/css_table.asp
  */
 .fixedHead {
-    border-collapse: collapse;
-    width: 100%;
-    overflow-y: auto;
+    overflow-y: auto !important;
     max-height: 500px;
 }
 
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-
-/* Sticky header in tables */
 .fixedHead th {
-    position: sticky;
-    top: 0;
-    background-color: #4CAF50;
-    color: white;
+    position: sticky !important;
 }
 
 

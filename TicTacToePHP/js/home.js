@@ -12,16 +12,16 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 var output;
-                output+='<tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>'
+                output += '<thead><tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr></thead>';
                 
                 if (response[0] === "ERROR-NOGAMES") {
-                    output += '';
+                    output += 'No games found :(';
                 }
                 else{
                     for (var x in response) {
                         var line = response[x].split(",");
                         output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ line[2] + '</td><td>' 
-                                + '<button type="button" id="but_joinGame">Join</button></td></tr>';
+                                + '<button class="btn btn-outline-success btn-sm" type="button" id="but_joinGame">Join</button></td></tr>';
                     }
                 }
                 $("#gamesTable").html(output);
@@ -33,6 +33,37 @@ $(document).ready(function(){
         });
     }
     setTimeout(getGames, interval);
+    
+    
+    function getMyOpenGames() {
+        $.ajax({
+            type: 'post',
+            url: 'actions/getMyOpenGames.php',
+            data: {},
+            dataType: 'json',
+            success: function (response) {
+                var output;
+                output += '<thead><tr><th>Game ID</th><th>User</th><th>Started</th><th>Join</th></tr></thead>';
+                
+                if (response[0] === "ERROR-NOGAMES") {
+                    output += 'No games found :(';
+                }
+                else{
+                    for (var x in response) {
+                        var line = response[x].split(",");
+                        output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ line[2] + '</td><td>' 
+                                + '<button class="btn btn-outline-success btn-sm" type="button" id="but_joinGame">Join</button></td></tr>';
+                    }
+                }
+                $("#myOpenGamesTable").html(output);
+            },
+            complete: function (response) {
+                // Schedule the next
+                setTimeout(getMyOpenGames, interval);
+            }
+        });
+    }
+    setTimeout(getMyOpenGames, interval);
     
     
     $("#but_newGame").click(function(){
@@ -111,41 +142,25 @@ $(document).ready(function(){
     setTimeout(getLeaderboard, interval);
     
     
-    $("#but_refresh").click(function(){
-        
-        if( username != "" && password != "" ){
-            $.ajax({
-                url:'./actions/loginAction.php',
-                type:'post',
-                data:{username:username, 
-                    password:password},
-                success:function(response){
-                    var msg = "";
-                    if(response == 1){
-                        window.location = "./home.php";
-                    }else{
-                        msg = response;
-                    }
-                    $("#message").html(msg);
-                }
-            });
-        }
-        else {
-            $("#message").html("Please enter a username and password.")
-        }
+    $("#toggle_games").click(function(){
+        $("#gamesDropdown").addClass("active");
+        $("#leaderboardsDropdown").removeClass("active");
+        $("#div_games").show();
+        $("#div_leaderboards, #div_myOpenGames").hide();
     });
     
-    $("#toggle_games").click(function(){
-//        $("#toggle_games").removeClass().addClass("toggleBtnSelected");
-//        $("#toggle_leaderboards").removeClass().addClass("toggleBtn");
-        $("#div_games").show(); 
-        $("#div_leaderboards").hide();
+    $("#toggle_myOpenGames").click(function(){
+        $("#gamesDropdown").addClass("active");
+        $("#leaderboardsDropdown").removeClass("active");
+        $("#div_myOpenGames").show();
+        $("#div_leaderboards, #div_games").hide();
     });
+    
     
     $("#toggle_leaderboards").click(function(){
-//        $("#toggle_leaderboards").removeClass().addClass("toggleBtnSelected");
-//        $("#toggle_games").removeClass().addClass("toggleBtn");
-        $("#div_leaderboards").show(); 
-        $("#div_games").hide();
+        $("#gamesDropdown").removeClass("active");
+        $("#leaderboardsDropdown").addClass("active");
+        $("#div_leaderboards").show();
+        $("#div_games, #div_myOpenGames").hide();
     });
 });

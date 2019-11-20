@@ -9,53 +9,70 @@
         <?php include "include/imports.php"; ?>
     </head>
     <body>
-        <button class="logoutBtn" id="logoutBtn"
-                onClick="window.location = 'actions/logoutAction.php'">Logout</button>
-        
-        <div class="container">
-            
-            <div class="row">
-                <div class="col-md">
-                    <div class="dropdown">
-                        <button class="btn btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+            <a class="navbar-brand" href="#">Tic Tac Toe</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#games" id="gamesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Games
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuButton">
                             <button class="dropdown-item" id="toggle_games">Open Games</button>
-                            <button class="dropdown-item" id="myOpenGames">My Open Games</a>
-                            <button class="dropdown-item" id="myOpenGames">My Running/Finished Games</a>
+                            <button class="dropdown-item" id="toggle_myOpenGames">My Open Games</button>
+                            <button class="dropdown-item" id="toggle_myGames">My Running/Finished Games</button>
                         </div>
-                    </div> 
-                </div>
-                <div class="col-md">
-                    <div class="dropdown">
-                        <button class="btn btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#leaderboards" id="leaderboardsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Leaderboards
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuButton">
                             <button class="dropdown-item" id="toggle_leaderboards">Full History</button>
-                            <button class="dropdown-item" id="showMyHistory">My History</a>
-                            <button class="dropdown-item" id="showLeaderboard">Leaderboards</a>
+                            <button class="dropdown-item" id="toggle_showMyHistory">My History</a>
+                            <button class="dropdown-item" id="toggle_showLeaderboard">Leaderboards</a>
                         </div>
-                    </div> 
-                </div>
-<!--                <button class="toggleBtnSelected" id="toggle_games">Games</button>-->
-                <!--<button class="toggleBtn" id="toggle_leaderboards">Leaderboards</button>-->
+                    </li>
+                </ul>
+                
+                    <span class="navbar-text">
+                        <button class="btn btn-sm btn-outline-danger" id="logoutBtn" type="button"
+                    onClick="window.location = 'actions/logoutAction.php'">Logout</button>
+                    </span>
             </div>
+        </nav>
+        <br>
+        <div class="container">
             <br>
-         
             <div id ="div_games">
-                <table class="fixedHead" id="gamesTable">
+                <table class="table thead-light table-hover" id="gamesTable">
                     <tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>
                 </table>
                 
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
             </div>
             
+            <div id ="div_myOpenGames" style="display:none">
+                <table class="table thead-light table-hover" id="myOpenGamesTable">
+                    <tr><th>Game ID</th><th>User</th><th>Started</th><th>Join</th></tr>
+                </table>
+                
+                <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
+            </div>
+            
+            <div id ="div_myGames" style="display:none">
+                <table class="table thead-light table-hover" id="myGamesTable">
+                    <tr><th>Game ID</th><th>User</th><th>User</th><th>Started</th><th>Join</th></tr>
+                </table>
+                
+                <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
+            </div>
+            
             <div id ="div_leaderboards" style="display:none">
-                <table class="fixedHead" id="leaderboard"></table>
-
-                <!--<input type="submit" name="refresh" value="Refresh" class="registerBtn" id="but_refresh" />-->
+                <table class="table fixedHead" id="leaderboard"></table>
             </div>
             
             <div id="message"></div>

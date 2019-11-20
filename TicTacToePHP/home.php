@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-            <a class="navbar-brand" href="#">Tic Tac Toe</a>
+            <span class="navbar-brand" href="#">Tic Tac Toe</span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,7 +23,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuButton">
                             <button class="dropdown-item" id="toggle_games">Open Games</button>
                             <button class="dropdown-item" id="toggle_myOpenGames">My Open Games</button>
-                            <button class="dropdown-item" id="toggle_myGames">My Running/Finished Games</button>
+                            <button class="dropdown-item" id="toggle_myGames">All My Games</button>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -31,9 +31,8 @@
                         Leaderboards
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuButton">
-                            <button class="dropdown-item" id="toggle_leaderboards">Full History</button>
-                            <button class="dropdown-item" id="toggle_showMyHistory">My History</a>
-                            <button class="dropdown-item" id="toggle_showLeaderboard">Leaderboards</a>
+                            <button class="dropdown-item" id="toggle_leaderboards">Leaderboards</button>
+                            <button class="dropdown-item" id="toggle_history">Full History</button>
                         </div>
                     </li>
                 </ul>
@@ -46,10 +45,11 @@
         </nav>
         <br>
         <div class="container">
-            <br>
+            <div id="currMode"><h2>Open Games</h2></div>
+            
             <div id ="div_games">
                 <table class="table thead-light table-hover" id="gamesTable">
-                    <tr><th>Game ID</th><th>User</th><th>Created</th><th>Join</th></tr>
+                    <tr><th>Game ID</th><th>Host</th><th>Created</th><th>Join</th></tr>
                 </table>
                 
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
@@ -57,7 +57,7 @@
             
             <div id ="div_myOpenGames" style="display:none">
                 <table class="table thead-light table-hover" id="myOpenGamesTable">
-                    <tr><th>Game ID</th><th>User</th><th>Started</th><th>Join</th></tr>
+                    <tr><th>Game ID</th><th>User</th><th>Started</th><th>Rejoin</th></tr>
                 </table>
                 
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
@@ -65,21 +65,28 @@
             
             <div id ="div_myGames" style="display:none">
                 <table class="table thead-light table-hover" id="myGamesTable">
-                    <tr><th>Game ID</th><th>User</th><th>User</th><th>Started</th><th>Join</th></tr>
+                    <tr><th>Game ID</th><th>Player 1</th><th>Player 2</th><th>Started</th><th>Rejoin</th></tr>
                 </table>
                 
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
             </div>
             
+            
             <div id ="div_leaderboards" style="display:none">
-                <table class="table fixedHead" id="leaderboard"></table>
+                <table class="table thead-light table-hover" id="leaderboardsTable">
+                    <tr><th>Rank</th><th>Username</th><th>Wins</th><th>Draws</th><th>Losses</th></tr>
+                </table>
+            </div>
+            
+            <div id ="div_history" style="display:none">
+                <table class="table thead-light table-hover" id="historyTable">
+                    <tr><th>Game</th><th>Player 1</th><th>Player 2</th><th>Winner</th><th>Created</th></tr>
+                </table>
             </div>
             
             <div id="message"></div>
             
-           
         </div>
-        <br><br>
         
     </body>
 </html>

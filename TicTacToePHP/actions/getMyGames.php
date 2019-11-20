@@ -1,9 +1,10 @@
 <?php
     include "../include/inc.php";
+    $uid = $_SESSION['uid'];
 //    unset($_SESSION['gid']);
     
     try{
-        $response = $client->showAllMyGames();
+        $response = $client->showAllMyGames(array('uid'=>$uid));
         
         $games = explode("\n", $response->return);
         echo json_encode($games);

@@ -5,6 +5,34 @@
     font-family: sans-serif;
 }
 
+/**
+ * Game Board
+ */
+
+.board {
+    max-width: 50%;
+    margin: auto;
+}
+
+.square {
+    vertical-align: top;
+    font-size:24px;
+    width:30%;
+    height:8%;
+}
+
+.disabledSquare {
+    pointer-events: none !important;
+    opacity: 0.4;
+    user-select: none;
+}
+
+/* Navbar active color */
+.navbar > li > a.active {
+    color: #4CAF50 !important;
+}
+
+
 /** 
  * CSS based on 
  * https://www.w3schools.com/howto/howto_css_register_form.asp
@@ -120,41 +148,4 @@ a {
 .signin {
     background-color: #f1f1f1;
     text-align: center;
-}
-
-
-/** 
- * Sticky table header based on:
- * https://www.w3schools.com/css/css_table.asp
- */
-.fixedHead {
-    overflow-y: auto !important;
-    max-height: 500px;
-}
-
-.fixedHead th {
-    position: sticky !important;
-}
-
-
-/**
- * Game Board
- */
-
-.board {
-    max-width: 50%;
-    margin: auto;
-}
-
-.square {
-    vertical-align: top;
-    font-size:24px;
-    width:30%;
-    height:8%;
-}
-
-.disabledSquare {
-    pointer-events: none !important;
-    opacity: 0.4;
-    user-select: none;
 }

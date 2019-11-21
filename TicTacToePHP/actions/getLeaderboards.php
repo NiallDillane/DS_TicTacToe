@@ -10,9 +10,12 @@
         $players = array();
         $outRows = array();
         
+        // For each game that was played
         foreach ($games as $row){
+            // Split into array
             $game = explode(",", $row);
             
+            // Find the winner
             $winner = $game[2];
             if ($game[3] == 0) {
                 $winner = "NA";
@@ -24,16 +27,24 @@
                 $winner = "Draw";
             }
             
+            /** 
+             * Check if this player has been added to the leaderboards yet.
+             * If not, add them to the players list and make a leaderboards entry.
+             */
             if (!in_array($game[1], $players)) {
                 array_push($players, $game[1]);
                 array_push($outRows, array($game[1], 0, 0, 0));
             }
-            
             if (!in_array($game[2], $players)) {
                 array_push($players, $game[2]);
                 array_push($outRows, array($game[2], 0, 0, 0));
             }
             
+            /**
+             * Cycle through leaderboards entries to find player 1 and 2.
+             * Increment their win/draw/loss columns appropriately.
+             * & (ampersand) is very important for maintaining the 2D array.
+             */
             foreach ($outRows as &$out) {
                 if ($out[0] == $game[1]) { // when I find player 1
                     switch($winner) {
@@ -63,7 +74,7 @@
                 }   
             }
         }
-//        array_multisort( $outRows[1], SORT_ASC);
+
         ECHO json_encode($outRows);
         
     }

@@ -1,5 +1,9 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
     
+    /**
+     * Constantly refresh board and check for win condition
+     * X or O decided on a counter 
+     */
     var interval = 1000;  // Refresh every 1 second
     function getBoard() {
         var i = 0;
@@ -33,6 +37,10 @@ $(document).ready(function(){
     setTimeout(getBoard, interval);
     
     
+    /**
+     * Check if it's your turn,
+     * then if the square is valid
+     */
     $(".square").click(function checkMove() {
         var loc = this.id;
         $.ajax({
@@ -54,6 +62,11 @@ $(document).ready(function(){
     });
     
     
+    /**
+     * 
+     * @param loc location of square
+     * if move valid, take the square
+     */
     function checkSquare(loc) {
         var x = loc.charAt(0);
         var y = loc.charAt(1);
@@ -76,6 +89,12 @@ $(document).ready(function(){
     }
     
     
+    /**
+     * 
+     * @param x co-ordinate
+     * @param y co-ordinate
+     * If move successful, flow ends here
+     */
     function takeSquare(x, y) {
         $.ajax({
             type: 'post',
@@ -94,6 +113,9 @@ $(document).ready(function(){
     }
     
     
+    /**
+     * Checks if the board is in a win condition
+     */
     function checkWin() {
         $.ajax({
             type: 'post',
@@ -110,7 +132,10 @@ $(document).ready(function(){
         });
     }
 
-
+    
+    /**
+     * If nobody joins game after 10 seconds, delete game
+     */
     setTimeout(function getGameState() {
         $.ajax({
             type: 'post',
@@ -128,6 +153,10 @@ $(document).ready(function(){
     }, 10000);
     
     
+    /**
+     * @param gs gamestate
+     * If win/draw/loss, redirect home
+     */
     function setGameState(gs) {
         $.ajax({
             type: 'post',
@@ -149,7 +178,10 @@ $(document).ready(function(){
         });
     }
     
-
+    
+    /**
+     * Delete inactive game
+     */
     function deleteGame() {
         $.ajax({
             type: 'post',

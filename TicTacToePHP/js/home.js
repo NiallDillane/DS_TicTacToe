@@ -16,7 +16,9 @@ $(document).ready(function(){
         });
     }
     
+    // Activate dropdowns
     $(".dropdown-toggle").dropdown();
+    
     
     /**
      * Gets the difference between current time and game created time
@@ -37,6 +39,9 @@ $(document).ready(function(){
     }
     
     
+    /**
+     * Refresh the list of open games every second
+     */
     var interval = 1000;  // Refresh every 1 second
     function getGames() {
         $.ajax({
@@ -131,6 +136,9 @@ $(document).ready(function(){
     setTimeout(getMyGames, interval);
     
     
+    /**
+     * Create a new game
+     */
     $("#but_newGame").click(function(){
         $.ajax({
             url:'./actions/newGame.php',
@@ -150,6 +158,9 @@ $(document).ready(function(){
     });
     
     
+    /**
+     * Find the game id on the row you clicked Join
+     */
     $(document).on("click", '#but_joinGame', (function(event){
         event.preventDefault();
         
@@ -172,6 +183,9 @@ $(document).ready(function(){
     }));
     
     
+    /**
+     * Output a table of all results, splitting the returned 2D array
+     */
     function getHistory() {
         $.ajax({
             type: 'post',
@@ -211,6 +225,10 @@ $(document).ready(function(){
     setTimeout(getHistory, interval);
     
     
+    /**
+     * Output a table of wins/draws/losses
+     * Should probably be in database but this is all I can do!
+     */
     function getLeaderboards() {
         $.ajax({
             type: 'post',
@@ -218,14 +236,19 @@ $(document).ready(function(){
             data: {},
             dataType: 'json',
             success: function (response) {
+                // Sort the leaderboards ascending (reversed in loop)
+                response = response.sort(function(a,b) {
+                    return a[1]-b[1];
+                });
                 var output;
                 output += '<thead><tr><th>Rank</th><th>Username</th><th>Wins</th><th>Draws</th><th>Losses</th></tr></thead>';
-
-                for (var i = 0; i < response.length ; i++) { // Reverse order
-                    var rank = i+1;
+                
+                var rank = 1;
+                for (var i = response.length-1; i >= 0 ; i--) { // Reverse order
                     var line = response[i];
                     output += '<tr><td>' + rank + '</td><td>' + line[0] + '</td><td>'+ line[1] + '</td>' 
                             + '<td>' + line[2] + '</td><td>' + line[3] + '</td></tr>';
+                    rank++;
                 }
                 $("#leaderboardsTable").html(output);
             },
@@ -237,6 +260,10 @@ $(document).ready(function(){
     }
     setTimeout(getLeaderboards, interval);
     
+    
+    /**
+     * Dropdown button listeners
+     */
     
     $("#toggle_games").click(function(){
         $("#gamesDropdown").addClass("active");
@@ -277,8 +304,6 @@ $(document).ready(function(){
         $("#div_leaderboards").show();
         $("#div_history, #div_games, #div_myOpenGames, #div_myGames").hide();
         $("#currMode").html("<h2>Leaderboards</h2>");
-        
-        getLeaderboards();
     });
     
 });

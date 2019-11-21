@@ -1,6 +1,15 @@
 <?php
     include "../include/inc.php";
     
+    /**
+     * This is primarily used at the home screen, for checking the status
+     * of a player's last-played game.
+     * Determines if that game was in progress, and gives them a loss if so,
+     * since they were the first to quit.
+     * If game wasn't yet started, it is deleted.
+     * Otherwise, simply reflects if the game was a win/draw/loss.
+     */
+    
     if (!isset($_SESSION['gid'])) {
         ECHO "";
     }
@@ -23,11 +32,12 @@
             $response = $client->getGameState(array('gid' => $gid));
             $gs = $response->return;
             
-            // Still waiting on player 2
+            // Game in progress
             if ($gs == 0) {
                 ECHO 0;
             }
             
+            // Still waiting on player 2, nobody wants to play
             else if ($gs == -1) {
                 $response = $client->deleteGame(array('gid' => $gid,
                                             'uid' => $uid,));
@@ -36,6 +46,7 @@
                 ECHO "Nobody wants to play with you :'(";
             }
             
+            // If the game was already deleted for being inactive
             else if ($gs == "ERROR-NOGAME") {
                 unset($_SESSION['gid']);
                 unset($_SESSION['xo']);

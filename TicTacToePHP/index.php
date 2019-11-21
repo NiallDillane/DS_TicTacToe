@@ -10,6 +10,10 @@
         
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+            <span class="navbar-brand" href="#">Tic Tac Toe</span>
+        </nav>
+        <br>
         <div class="container">
             
             <div class="toggleContainer">

@@ -57,7 +57,7 @@
             
             <div id ="div_myOpenGames" style="display:none">
                 <table class="table thead-light table-hover" id="myOpenGamesTable">
-                    <tr><th>Game ID</th><th>User</th><th>Started</th><th>Rejoin</th></tr>
+                    <tr><th>Game ID</th><th>User</th><th>Started</th></tr>
                 </table>
                 
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />
@@ -65,7 +65,7 @@
             
             <div id ="div_myGames" style="display:none">
                 <table class="table thead-light table-hover" id="myGamesTable">
-                    <tr><th>Game ID</th><th>Player 1</th><th>Player 2</th><th>Started</th><th>Rejoin</th></tr>
+                    <tr><th>Game ID</th><th>Player 1</th><th>Player 2</th><th>Started</th></tr>
                 </table>
                 
                 <input type="submit" name="newGame" value="New Game" class="registerBtn" id="but_newGame" />

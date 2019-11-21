@@ -1,6 +1,5 @@
 $(document).ready(function(){
     
-    
     $(".dropdown-toggle").dropdown();
     
     /**
@@ -18,9 +17,7 @@ $(document).ready(function(){
         // diff returned in milliseconds, so for formatting:
         var hours   = Math.floor(diff / 3.6e6);
         var minutes = Math.floor((diff % 3.6e6) / 6e4);
-        var seconds = Math.floor((diff % 6e4) / 1000);
-        return hours + 'h, ' +  minutes + 'm and ' + 
-                     seconds + 's ago';
+        return hours + 'h, ' +  minutes + 'm ago';
     }
     
     
@@ -65,7 +62,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 var output;
-                output += '<thead><tr><th>Game ID</th><th>User</th><th>Started</th><th>Rejoin</th></tr></thead>';
+                output += '<thead><tr><th>Game ID</th><th>User</th><th>Started</th></tr></thead>';
                 
                 if (response[0] === "ERROR-NOGAMES") {
                     output += 'No games found :(';
@@ -74,8 +71,7 @@ $(document).ready(function(){
                     for (var i = response.length-1; i >= 0; i--) {
                         var line = response[i].split(",");
                         var time = timeDiff(line[2]);
-                        output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ time + '</td><td>' 
-                                + '<button class="btn btn-outline-success btn-sm" type="button" id="but_joinGame">Join</button></td></tr>';
+                        output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ time + '</td></tr>';
                     }
                 }
                 $("#myOpenGamesTable").html(output);
@@ -97,7 +93,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 var output;
-                output += '<thead><tr><th>Game ID</th><th>Player 1</th><th>Player 2</th><th>Started</th><th>Rejoin</th></tr></thead>';
+                output += '<thead><tr><th>Game ID</th><th>Player 1</th><th>Player 2</th><th>Started</th></tr></thead>';
                 
                 if (response[0] === "ERROR-NOGAMES") {
                     output += 'No games found :(';
@@ -105,9 +101,7 @@ $(document).ready(function(){
                 else {
                     for (var i = response.length-1; i >= 0; i--) {
                         var line = response[i].split(",");
-                        var time = timeDiff(line[3]);
-                        output += '<tr><td>' + line[0] + '</td><td>' + line[1]+ '</td><td>' + line[2] + '</td><td>'+ time + '</td><td>' 
-                                + '<button class="btn btn-outline-success btn-sm" type="button" id="but_joinGame">Join</button></td></tr>';
+                        output += '<tr><td>' + line[0] + '</td><td>' + line[1]+ '</td><td>' + line[2] + '</td><td>'+ line[3] + '</td></tr>';
                     }
                 }
                 $("#myGamesTable").html(output);
@@ -170,7 +164,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 var output;
-                output += '<tr><th>Game</th><th>Player 1</th><th>Player 2</th><th>Winner</th><th>Created</th></tr>'
+                output += '<thead><tr><th>Game</th><th>Player 1</th><th>Player 2</th><th>Winner</th><th>Created</th></tr></thead>'
                 
                 if (response[0] === "ERROR-NOGAMES") {
                     output += '<tr><td>No Games Found :( </td><td></td><td></td><td></td><td></td></tr>';
@@ -202,32 +196,35 @@ $(document).ready(function(){
     
     
     function getLeaderboards() {
-        console.log("leaderboards boiii");
         $.ajax({
             type: 'post',
             url: 'actions/getLeaderboards.php',
             data: {},
-//            dataType: 'json',
+            dataType: 'json',
             success: function (response) {
-                console.log("yo here");
-                console.log(response);
-//                    var output;
-//                    output += '<tr><th>Rank</th><th>Username</th><th>Wins</th><th>Draws</th><th>Losses</th></tr>'
-//
-//                    if (response[0] === "ERROR-NOGAMES") {
-//                        output += '<tr><td>No Games Found :( </td><td></td><td></td><td></td><td></td></tr>';
-//                    }
-//                    else{
-//                        for (var i = response.length-1; i >= 0; i--) { // Reverse order
-//                            var line = response[i].split(",");
-//                            output += '<tr><td>' + line[0] + '</td><td>' + line[1] + '</td><td>'+ line[2] + '</td>' 
-//                                    + '<td>' + line[4] + '</td><td>' + line[5] + '</td></tr>';
-//                        }
-//                    }
-//                    $("#leaderboardsTable").html(output);
+                var output;
+                output += '<thead><tr><th>Rank</th><th>Username</th><th>Wins</th><th>Draws</th><th>Losses</th></tr></thead>';
+
+                for (var i = 0; i < response.length ; i++) { // Reverse order
+                    var rank = i+1;
+                    var line = response[i];
+                    output += '<tr><td>' + rank + '</td><td>' + line[0] + '</td><td>'+ line[1] + '</td>' 
+                            + '<td>' + line[2] + '</td><td>' + line[3] + '</td></tr>';
+                }
+                $("#leaderboardsTable").html(output);
+            },
+            complete: function (response) {
+                // Schedule the next
+                setTimeout(getLeaderboards, interval);
             }
         });
     }
+    setTimeout(getLeaderboards, interval);
+    
+//    
+//    function test(){
+//        console.log("test");
+//    }
     
     
     $("#toggle_games").click(function(){
@@ -259,7 +256,7 @@ $(document).ready(function(){
         $("#gamesDropdown").removeClass("active");
         $("#leaderboardsDropdown").addClass("active");
         $("#div_history").show();
-        $("#div_games, #div_myOpenGames, #div_myGames").hide();
+        $("#div_leaderboards, #div_games, #div_myOpenGames, #div_myGames").hide();
         $("#currMode").html("<h2>Full History</h2>");
     });
     

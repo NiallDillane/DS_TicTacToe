@@ -1,6 +1,5 @@
 <?php
     include "./include/inc.php";
-    echo $_SESSION['gid'];
 ?>
 
 <html>
@@ -9,7 +8,11 @@
         <title>Play</title>
         <?php include "include/imports.php"; ?>
     </head>
-    <body>        
+    <body>
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+            <span class="navbar-brand" href="#">Tic Tac Toe</span>
+        </nav>
+        <br>        
         <div class="container">
             <div class="board">
                 <button class="square" id="00"></button>

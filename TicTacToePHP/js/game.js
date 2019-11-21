@@ -3,7 +3,6 @@ $(document).ready(function(){
     var interval = 1000;  // Refresh every 1 second
     function getBoard() {
         var i = 0;
-        console.log("Getting board");
         $.ajax({
             type: 'post',
             url: 'actions/getBoard.php',
@@ -41,7 +40,7 @@ $(document).ready(function(){
             url: 'actions/checkMove.php',
             data: {},
             success: function (response) {
-                if (response == 1){
+                if (response == 1) {
                     checkSquare(loc);
                 }
                 else if (response == 0) {
@@ -56,7 +55,6 @@ $(document).ready(function(){
     
     
     function checkSquare(loc) {
-        console.log(loc);
         var x = loc.charAt(0);
         var y = loc.charAt(1);
         
@@ -68,7 +66,6 @@ $(document).ready(function(){
                 var msg = "";
                 if(response == 0){
                     takeSquare(x, y);
-                    console.log("Square ok");
                 }
                 else{
                     msg = response;
@@ -87,7 +84,6 @@ $(document).ready(function(){
             success: function (response) {
                 var msg = "";
                 if(response == 1){
-                    console.log("Square taken");
                 }
                 else{
                     msg = response;
@@ -104,8 +100,6 @@ $(document).ready(function(){
             url: 'actions/checkWin.php',
             data: {},
             success: function (response) {
-                console.log("Setting gamestate to " + response);
-                
                 if(!isNaN(response)) {
                     setGameState(response);
                 }
@@ -127,9 +121,7 @@ $(document).ready(function(){
                     window.location = "./home.php";
                 }
                 else {
-                    msg = response;
                 }
-                $("#message").html(msg);
             }
         });
     }, 10000);
@@ -139,12 +131,16 @@ $(document).ready(function(){
         $.ajax({
             type: 'post',
             url: 'actions/setGameState.php',
-            data: {gs: gs},
+            data: {user: false,
+                gs: gs},
             success: function (response) {
                 var msg = "";
                 if(response == 1){
                     // delete game
                     window.location = "./home.php"
+                }
+                else if (response == 0) {
+                    // continue
                 }
                 else{
                     msg = response;
@@ -175,3 +171,4 @@ $(document).ready(function(){
     });
     
 });
+

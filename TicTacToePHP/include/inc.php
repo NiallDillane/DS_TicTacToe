@@ -18,7 +18,8 @@
     $base_url = "/TicTacToePHP/";
     $url = str_replace($base_url, "", $_SERVER['REQUEST_URI']);
     
-    $newAccess = array("index.php", 
+    $newAccess = array("",
+        "index.php", 
         "actions/loginAction.php", 
         "actions/registerAction.php");
     

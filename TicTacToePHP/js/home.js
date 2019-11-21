@@ -1,5 +1,21 @@
 $(document).ready(function(){
     
+    /**
+     * Check if the user has just returned from a game, adjust accordingly
+     */
+    checkGameStatus();
+    function checkGameStatus(){
+        $.ajax({
+            url:'./actions/getGameState.php',
+            type:'post',
+            data:{},
+            success:function(response){
+                var msg = response;
+                $("#message").html(msg);
+            }
+        });
+    }
+    
     $(".dropdown-toggle").dropdown();
     
     /**
@@ -220,11 +236,6 @@ $(document).ready(function(){
         });
     }
     setTimeout(getLeaderboards, interval);
-    
-//    
-//    function test(){
-//        console.log("test");
-//    }
     
     
     $("#toggle_games").click(function(){

@@ -3,14 +3,12 @@
     
     try{
         $uid = $_SESSION['uid'];
-        $gid = htmlspecialchars($_POST['gid']);
+        $gid = $_SESSION['gid'];
         
-        $response = $client->joinGame(array('uid' => $uid,
-                                            'gid' => $gid));
+        $response = $client->deleteGame(array('gid' => $gid,
+                                            'uid' => $uid,));
         
-        if (is_numeric($response->return)) {
-            $_SESSION['gid'] = $gid;
-            $_SESSION['xo'] = 'o';
+        if ($response->return == 1) {
             echo 1;
         }
         else {

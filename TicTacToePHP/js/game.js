@@ -117,10 +117,11 @@ $(document).ready(function(){
             url: 'actions/getGameState.php',
             data: {},
             success: function (response) {
-                if(response == -1){
-                    window.location = "./home.php";
+                if(response == "Nobody wants to play with you :'("){
+                    deleteGame();
                 }
                 else {
+                    // keep playing
                 }
             }
         });
@@ -131,16 +132,14 @@ $(document).ready(function(){
         $.ajax({
             type: 'post',
             url: 'actions/setGameState.php',
-            data: {user: false,
-                gs: gs},
+            data: {gs: gs},
             success: function (response) {
                 var msg = "";
                 if(response == 1){
-                    // delete game
                     window.location = "./home.php"
                 }
                 else if (response == 0) {
-                    // continue
+                    // continue playing
                 }
                 else{
                     msg = response;
@@ -151,24 +150,17 @@ $(document).ready(function(){
     }
     
 
-    $("#but_quit").click(function deleteGame() {
+    function deleteGame() {
         $.ajax({
             type: 'post',
             url: 'actions/deleteGame.php',
             data: {},
             success: function (response) {
-                var msg = "";
-                if(response == 1){
-                    window.location = "./home.php";
-                }
-                else{
-                    msg = response;
-                }
-                $("#message").html(msg);
+                window.location = "./home.php";
             }
         });
         
-    });
+    }
     
 });
 

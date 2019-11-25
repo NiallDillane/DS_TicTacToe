@@ -6,7 +6,6 @@
         $games = explode("\n", $response->return);
         // game, p1, p2, winner, created
         
-        // player, wins, draws, losses
         $players = array();
         $outRows = array();
         
@@ -30,14 +29,17 @@
             /** 
              * Check if this player has been added to the leaderboards yet.
              * If not, add them to the players list and make a leaderboards entry.
+             * (username, wins, draws, losses, isUser)
+             * isUser is so I can highlight that row as the user in the leaderboards
+             * strcmp() will return 0 if the stored username is the same as session username
              */
             if (!in_array($game[1], $players)) {
                 array_push($players, $game[1]);
-                array_push($outRows, array($game[1], 0, 0, 0));
+                array_push($outRows, array($game[1], 0, 0, 0, strcmp($_SESSION['username'], $game[1]))); 
             }
             if (!in_array($game[2], $players)) {
                 array_push($players, $game[2]);
-                array_push($outRows, array($game[2], 0, 0, 0));
+                array_push($outRows, array($game[2], 0, 0, 0, strcmp($_SESSION['username'], $game[2])));
             }
             
             /**

@@ -236,6 +236,7 @@ $(document).ready(function(){
             data: {},
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 // Sort the leaderboards ascending (reversed in loop)
                 response = response.sort(function(a,b) {
                     return a[1]-b[1];
@@ -246,8 +247,15 @@ $(document).ready(function(){
                 var rank = 1;
                 for (var i = response.length-1; i >= 0 ; i--) { // Reverse order
                     var line = response[i];
-                    output += '<tr><td>' + rank + '</td><td>' + line[0] + '</td><td>'+ line[1] + '</td>' 
+                    if (line[4] == 0) {
+                        output += '<tr style="background-color: #b2fab4;"><td>' + rank + '</td><td>' + line[0] + '</td><td>'+ line[1] + '</td>' 
                             + '<td>' + line[2] + '</td><td>' + line[3] + '</td></tr>';
+                        
+                    }
+                    else {
+                        output += '<tr><td>' + rank + '</td><td>' + line[0] + '</td><td>'+ line[1] + '</td>' 
+                                + '<td>' + line[2] + '</td><td>' + line[3] + '</td></tr>';
+                    }
                     rank++;
                 }
                 $("#leaderboardsTable").html(output);

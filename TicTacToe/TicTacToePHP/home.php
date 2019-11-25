@@ -37,10 +37,13 @@
                     </li>
                 </ul>
                 
-                    <span class="navbar-text">
-                        <button class="btn btn-sm btn-outline-danger" id="logoutBtn" type="button"
-                    onClick="window.location = 'actions/logoutAction.php'">Logout</button>
-                    </span>
+                
+                <span class="navbar-text">Logged in as: <?php ECHO $_SESSION['username']; ?>&nbsp;&nbsp;</span>
+                
+                <span class="navbar-text">
+                    <button class="btn btn-sm btn-outline-danger" id="logoutBtn" type="button"
+                onClick="window.location = 'actions/logoutAction.php'">Logout</button>
+                </span>
             </div>
         </nav>
         <br>

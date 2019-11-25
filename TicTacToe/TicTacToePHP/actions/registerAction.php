@@ -3,22 +3,24 @@
 
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
+    $firstname = htmlspecialchars($_POST['firstname']);
+    $surname = htmlspecialchars($_POST['surname']);
     
     try{
-        $response = $client->login(array(
+        $response = $client->register(array(
             'username' => $username,
-            'password' => $password
+            'password' => $password,
+            'name' => $firstname,
+            'surname' => $surname
         ));
     
-        if (($response->return)>0){
+        if (ctype_digit($response->return)){
             ECHO 1;
             $_SESSION['uid'] = $response->return;
+            $_SESSION['username'] = $username;
         }
-        else if (($response->return) == 0){
-            ECHO "Error - Incorrect details";
-        }
-        else {
-            ECHO "Error";
+        else{
+            ECHO $response->return;
         }
     }
     catch(Exception $e){

@@ -136,21 +136,26 @@ $(document).ready(function(){
     /**
      * If nobody joins game after 10 seconds, delete game
      */
-    setTimeout(function getGameState() {
+    function getGameState() {
         $.ajax({
             type: 'post',
             url: 'actions/getGameState.php',
             data: {},
             success: function (response) {
-                if(response == "Nobody wants to play with you :'("){
+                if(response == -1){
                     deleteGame();
                 }
-                else {
-                    // keep playing
+                else if ((response == 1) || (response == 2)) {
+                    window.location = "./home.php";
                 }
+            },
+            complete: function (response) {
+                // Schedule the next
+                setTimeout(getGameState, 1000);
             }
         });
-    }, 10000);
+    }
+    setTimeout(getGameState, 10000);
     
     
     /**
@@ -194,5 +199,11 @@ $(document).ready(function(){
         
     }
     
+    /**
+     * Quit game
+     */
+    $("#but_quit").click(function(){
+        window.location = "./home.php";
+    });
 });
 

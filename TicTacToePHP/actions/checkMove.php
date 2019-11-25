@@ -26,12 +26,21 @@
                 ECHO 1; // Go
             }
         }
+        // it's the first move
         else {
             if ($xo == 'o') {
                 ECHO 0; // Wait
             }
             else {
-                ECHO 1; // Go
+                // you're first, make sure there's an opponent!
+                $response = $client->getGameState(array('gid' => $gid));
+                $gs = $response->return;
+                if ($gs == -1) {
+                    ECHO 0; // wait until someone joins
+                }
+                else {
+                    ECHO 1; // Go
+                }
             }
         }
         

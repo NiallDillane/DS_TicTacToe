@@ -6,7 +6,7 @@ $(document).ready(function(){
     checkGameStatus();
     function checkGameStatus(){
         $.ajax({
-            url:'./actions/getGameState.php',
+            url:'./actions/checkGameHome.php',
             type:'post',
             data:{},
             success:function(response){

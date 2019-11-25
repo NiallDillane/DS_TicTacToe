@@ -2,27 +2,33 @@ $(document).ready(function(){
     $("#but_register").click(function(){
         var username = $("#username").val().trim();
         var password = $("#password").val().trim();
+        var passwordRe = $("#passwordRe").val().trim();
         var firstname = $("#firstname").val().trim();
         var surname = $("#surname").val().trim();
         
-        if( username != "" && password != "" ){
-            $.ajax({
-                url:'./actions/registerAction.php',
-                type:'post',
-                data:{username:username, 
-                    password:password, 
-                    firstname:firstname, 
-                    surname:surname },
-                success:function(response){
-                    var msg = "";
-                    if(response == 1){
-                        window.location = "./home.php";
-                    }else{
-                        msg = response;
+        if ( username != "" && password != "" ) {
+            if (password == passwordRe) {
+                $.ajax({
+                    url:'./actions/registerAction.php',
+                    type:'post',
+                    data:{username:username, 
+                        password:password, 
+                        firstname:firstname, 
+                        surname:surname },
+                    success:function(response){
+                        var msg = "";
+                        if(response == 1){
+                            window.location = "./home.php";
+                        }else{
+                            msg = response;
+                        }
+                        $("#message").html(msg);
                     }
-                    $("#message").html(msg);
-                }
-            });
+                });
+            }
+            else {
+                $("#message").html("Passwords do not match.");
+            }
         }
         else {
             $("#message").html("Please enter a username and password.")

@@ -17,15 +17,15 @@
         <div class="container">
             <div class="board">
                 <button class="square" id="00"></button>
-                <button class="square" id="01"></button>
-                <button class="square" id="02"></button><br>
-
                 <button class="square" id="10"></button>
-                <button class="square" id="11"></button>
-                <button class="square" id="12"></button><br>
+                <button class="square" id="20"></button><br>
 
-                <button class="square" id="20"></button>
-                <button class="square" id="21"></button>
+                <button class="square" id="01"></button>
+                <button class="square" id="11"></button>
+                <button class="square" id="21"></button><br>
+
+                <button class="square" id="02"></button>
+                <button class="square" id="12"></button>
                 <button class="square" id="22"></button><br>
             </div>
             <br>
